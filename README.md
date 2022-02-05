@@ -7,6 +7,6 @@ Command places at the RIE
 # OPTIONS
 
     -h, --help                      show this help message and exit
-    -d DATE, --date DATE            The date and hour for the reservation
+    -d DATE, --date DATE            The date and hour for the reservation (format : "YYYY-mm-dd HH-MM")
     -p PERSONS, --persons PERSONS   Number of persons eating at the RIE
     -e EMAIL, --email EMAIL         The mail of the person receiving the reservation
