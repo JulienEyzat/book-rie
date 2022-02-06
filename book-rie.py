@@ -1,6 +1,7 @@
 import argparse
 import datetime
 import json
+import sys
 
 import yoplanning_api
 
@@ -38,6 +39,12 @@ def get_time_widget(api, eating_datetime):
     return time_widget
 
 def add_eaters(api, rie_widget, time_widget, nb_eaters):
+    # Check if enough places
+    if time_widget["StockAvailable"] < nb_eaters:
+        print("There is %s places left at this hour but you ask for %s places. The reservation failed." %(time_widget["StockAvailable"], nb_eaters))
+        sys.exit()
+
+    # Add to cart
     add_cart_json = {}
     add_cart_json["product"] = rie_widget
     add_cart_json["qty"] = nb_eaters
@@ -111,3 +118,4 @@ if __name__ == "__main__":
         add_eaters_names(api)
         set_mail(api, email)
         validate_command(api)
+        print("The reservation succeeded")
