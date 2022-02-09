@@ -7,14 +7,15 @@ import yoplanning_api
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Command places at the RIE')
-    parser.add_argument('-d', "--date", type=str, default=datetime.date.today().strftime("%Y-%m-%d 12:15"), help='The date and hour for the reservation')
+    parser.add_argument('-d', "--date", type=str, default=datetime.date.today().strftime("%Y-%m-%d"), help='The date for the reservation')
+    parser.add_argument('-t', "--time", type=str, default="12:15", help='The time (hours:minutes) for the reservation')
     parser.add_argument('-p', "--persons", type=int, default=15, help='Number of persons eating at the RIE')
     parser.add_argument('-e', "--email", type=str, required=True, help='The mail of the person receiving the reservation')
     args = parser.parse_args()
     return args
 
 def clean_arguments(args):
-    eating_datetime = datetime.datetime.strptime(args.date, '%Y-%m-%d %H:%M')
+    eating_datetime = datetime.datetime.strptime("%s %s" %(args.date, args.time), '%Y-%m-%d %H:%M')
     nb_eaters = args.persons
     email = args.email
     return eating_datetime, nb_eaters, email
@@ -26,6 +27,14 @@ def get_rie_widget(api):
 def get_time_widget(api, eating_datetime):
     # Get products of the search day
     products_dict = api.get_lines(eating_datetime)
+
+    # Print the time and number of persons left
+    if products_dict["datas"]["ptabProduct"][0]["ptabAvailability"]:
+        print("Places at each hours :")
+        for product in products_dict["datas"]["ptabProduct"][0]["ptabAvailability"]:
+            hour = datetime.datetime.strptime(product["StartDateTime"], "%Y%m%d%H%M00000").strftime("%Y-%m-%d %H:%M")
+            left_persons = product["StockAvailable"]
+            print("At %s : %s places left" %(hour, left_persons))
 
     # Get the widget in the list
     time_widget = None

@@ -10,14 +10,17 @@ Install the dependencies
 
 # USAGE
 
-    python3 book-rie.py [-h] [-d DATE] [-p PERSONS] -e EMAIL
+    python3 book-rie.py [-h] [-d DATE] [-t TIME] [-p PERSONS] -e EMAIL
 
 # OPTIONS
 
     -h, --help                      show this help message and exit.
-    -d DATE, --date DATE            The date and hour for the reservation.
-                                    Format : "YYYY-mm-dd HH-MM"
-                                    Default : Today at 12:15
+    -d DATE, --date DATE            The date for the reservation.
+                                    Format : "YYYY-mm-dd"
+                                    Default : Today
+    -t TIME, --time TIME            The time for the reservation
+                                    Format : "HH-MM"
+                                    Default : 12:15
     -p PERSONS, --persons PERSONS   Number of persons eating at the RIE.
                                     Default : 15
     -e EMAIL, --email EMAIL         The mail of the person receiving the reservation.
