@@ -1,0 +1,16 @@
+{
+    "eating_hours": {
+        "hour": 13,
+        "minute": 45
+    },
+    "eaters_by_weekday": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 0,
+        "6": 0
+    },
+    "email": "jean.dodru@yopmail.com"
+}
