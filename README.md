@@ -1,4 +1,4 @@
-Command places at the RIE
+Book places at the RIE
 
 # INSTALLATION
 
