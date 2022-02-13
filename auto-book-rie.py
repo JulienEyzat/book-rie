@@ -9,10 +9,11 @@ def get_params():
         params = json.load(file)
     
     # Eating datetime
-    eating_datetime = datetime.datetime.date.today().replace(hour=params["eating_hours"]["hour"], minute=params["eating_hours"]["minute"])
+    eating_datetime = datetime.datetime.today()
+    eating_datetime = eating_datetime.replace(hour=params["eating_hours"]["hour"], minute=params["eating_hours"]["minute"])
 
     # Nb eaters
-    today_weekday = datetime.datetime.today().weekday()
+    today_weekday = str(datetime.date.today().weekday())
     nb_eaters = params["eaters_by_weekday"][today_weekday]
 
     # Email
