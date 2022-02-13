@@ -23,4 +23,6 @@ jobs:
           pip install -r requirements.txt
           
       - name: execute py script # run script
-        run: python auto-book-rie.py
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+        run: python book-rie.py -e "$EMAIL" --persons-file 
